@@ -97,7 +97,7 @@ if ($response->result) {
           echo json_encode(array("success" => false));
         } else {
 
-          $apiKey = "api-782713BD8C92472A829AF61A1971AA01"; // ⚠️ Replace with new API key
+          $apiKey = "api-2D3B17CA551548EDBB54E06E4E6E8D85"; // ⚠️ Replace with new API key
 
           $emailArr = array("dcbindia@dcbindia.in", "dcb@dcbindia.in");
 
@@ -107,7 +107,7 @@ if ($response->result) {
           if (in_array($email, $emailArr)) {
             $toEmails[] = "dcbrainsinquiry@gmail.com";
           } else {
-            $toEmails[] = "info@phppl.co.in";
+            $toEmails[] = "sales@auraramah.com";
             $bccEmails[] = "dcbrainsinquiry@gmail.com";
           }
 
