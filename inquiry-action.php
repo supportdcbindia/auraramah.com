@@ -1,12 +1,12 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 
-echo "<pre>";print_r($_POST);
-echo "<pre>";print_r($_REQUEST);
-exit;
+// echo "<pre>";print_r($_POST);
+// echo "<pre>";print_r($_REQUEST);
+// exit;
 
 $myfile = fopen("logs.txt", "a+") or die("Unable to open file!");
 
@@ -27,6 +27,8 @@ fwrite($myfile, "\n==============================\n");
 fclose($myfile);
 
 function send_request($data) {
+    
+    return true;
 
   $curl = curl_init();
   curl_setopt_array($curl, array(
@@ -61,7 +63,12 @@ $curlArr = array_merge($_POST, $_SERVER);
 $curlArr['sitename'] = $_SERVER['HTTP_HOST'];
 $curlArr['save'] = false;
 $response = send_request($curlArr);
-if ($response->result) {
+
+// echo "<pre>";print_r($response);
+// echo "<pre>";print_r($_POST);
+// exit;
+
+if (false) {
   $curlArr = array_merge($_POST, $_SERVER);
   $curlArr['sitename'] = $_SERVER['HTTP_HOST'];
   $curlArr['save'] = true;
@@ -119,7 +126,6 @@ if ($response->result) {
                   <meta http-equiv="content-type" content="text/html; charset=windows-1250">
                   <meta name="generator" content="PSPad editor, www.pspad.com">
                   <title></title>
-                  <style type="text/css">span.go{display:none} .go{display:none}</style>
                   </head>
                   <body>
                     <div style="font-family:arial;font-size:12px;font-weight:normal;color:#000000;background:#ffffff;border:10px solid #cccccc;width:600px;padding:20px;margin: 0px auto;">
@@ -163,7 +169,7 @@ if ($response->result) {
                   </div>
                   </body>
                 </html>';
-
+                
           if ($_POST['form_type'] == "catalogue") {
             $subject = "New Catalogue Enquiry From Auraramah Labels Pvt. Ltd Corporate Website";
 
@@ -173,7 +179,6 @@ if ($response->result) {
                   <meta http-equiv="content-type" content="text/html; charset=windows-1250">
                   <meta name="generator" content="PSPad editor, www.pspad.com">
                   <title></title>
-                  <style type="text/css">span.go{display:none} .go{display:none}</style>
                   </head>
                   <body>
                     <div style="font-family:arial;font-size:12px;font-weight:normal;color:#000000;background:#ffffff;border:10px solid #cccccc;width:600px;padding:20px;margin: 0px auto;">
@@ -216,7 +221,7 @@ if ($response->result) {
                   </body>
                 </html>';
           }
-
+          
           $data = [
             "api_key" => $apiKey,
             "to" => $toEmails,
@@ -226,12 +231,12 @@ if ($response->result) {
             "text_body" => strip_tags($message_body),
             "reply_to" => $email
           ];
-
+          
 
           if (!empty($bccEmails)) {
             $data["bcc"] = $bccEmails;
           }
-
+          
           $ch = curl_init();
 
           curl_setopt($ch, CURLOPT_URL, "https://api.smtp2go.com/v3/email/send");
@@ -244,6 +249,7 @@ if ($response->result) {
           curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
           $response = curl_exec($ch);
+          
           $result = json_decode($response, true);
           if (isset($result['data']['succeeded']) && $result['data']['succeeded'] > 0) {
             echo json_encode(array("success" => true));
