@@ -119,7 +119,7 @@ if (false) {
           }
 
 
-          $subject = "New Enquiry From Auraramah Labels Pvt. Ltd Corporate Website";
+          $subject = " New Enquiry From Auraramah Labels Pvt. Ltd Corporate Website - Landing Page ";
           $message_body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
                   <html>
                   <head>
@@ -171,7 +171,7 @@ if (false) {
                 </html>';
                 
           if ($_POST['form_type'] == "catalogue") {
-            $subject = "New Catalogue Enquiry From Auraramah Labels Pvt. Ltd Corporate Website";
+            $subject = "New Catalogue Enquiry From Auraramah Labels Pvt. Ltd Corporate Website  - Landing Page ";
 
             $message_body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
                   <html>
